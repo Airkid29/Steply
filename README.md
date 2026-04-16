@@ -5,30 +5,30 @@
 **Steply** is an innovative AI-driven career matching platform designed specifically for students and recent graduates. Our mission is to revolutionize the job search experience by using advanced AI algorithms to match candidates with opportunities that truly fit their skills, aspirations, and career goals.
 
 ### 🏆 Hackathon Context
-This project was developed during [Hackathon Name] as a solution to the challenge of inefficient career matching in the education-to-employment transition. We identified that traditional job boards overwhelm students with irrelevant listings, while recruiters struggle to find qualified candidates.
+This project was developed during Tech Builders Program on Devpost as a solution to the challenge of inefficient career matching in the education-to-employment transition. We identified that traditional job boards overwhelm students with irrelevant listings, while recruiters struggle to find qualified candidates.
 
-## 🚀 Key Features
+##  Key Features
 
-### 🤖 AI-Powered Matching Engine
+###  AI-Powered Matching Engine
 - **Intelligent Profile Analysis**: Analyzes user skills, academic background, and career goals
 - **Dynamic Opportunity Scoring**: Uses machine learning to score opportunities based on multiple factors
 - **Real-time Recommendations**: Continuously learns from user interactions to improve matches
 
-### 📱 Multi-Platform Experience
+###  Multi-Platform Experience
 - **Responsive Web Application**: Optimized for desktop, tablet, and mobile devices
 - **Progressive Web App (PWA)**: Installable on mobile devices for native-like experience
 - **Cross-browser Compatibility**: Works seamlessly across all modern browsers
 
-### 👥 Dual User Experience
+### Dual User Experience
 - **For Students**: Personalized dashboard with AI-matched opportunities
 - **For Recruiters**: Easy posting interface with targeted reach to qualified candidates
 
-### 🔔 Smart Notification System
+###  Smart Notification System
 - **Deadline Alerts**: Automatic notifications for application deadlines
 - **Match Notifications**: Alerts when new high-match opportunities are posted
 - **Customizable Preferences**: Users can control notification frequency and types
 
-## 🛠 Technical Architecture
+##  Technical Architecture
 
 ### Frontend Stack
 - **React 18** with modern hooks and functional components
@@ -57,7 +57,7 @@ This project was developed during [Hackathon Name] as a solution to the challeng
 - **Performance Optimization**: Code splitting, lazy loading, and caching
 - **Accessibility**: WCAG 2.1 AA compliant interface
 
-## 📊 Data Flow & User Journey
+##  Data Flow & User Journey
 
 ### Student Onboarding
 1. **Authentication**: Google OAuth or email registration
@@ -80,7 +80,7 @@ This project was developed during [Hackathon Name] as a solution to the challeng
 2. **Candidate Discovery**: Access to qualified student profiles
 3. **Application Management**: Track and manage applications
 
-## 🎨 Design System
+##  Design System
 
 ### Color Palette
 - **Primary**: Indigo (#4f46e5) - Trust and professionalism
@@ -99,7 +99,7 @@ This project was developed during [Hackathon Name] as a solution to the challeng
 - **Cards**: Opportunity cards with rich metadata
 - **Notifications**: Toast system and in-app alerts
 
-## 🔧 Development Setup
+##  Development Setup
 
 ### Prerequisites
 - Node.js 18+
@@ -129,7 +129,7 @@ VITE_GOOGLE_CLIENT_ID=your_google_client_id
 
 > Note: cette version utilise un backend mock local. Les variables `VITE_BASE44_APP_ID` et `VITE_BASE44_APP_BASE_URL` ne sont pas nécessaires tant que vous n’utilisez pas un vrai app Base44.
 
-## 🚀 Deployment
+##  Deployment
 
 ### Recommended Platforms
 - **Vercel**: Connect GitHub repo, automatic deployments
@@ -142,7 +142,7 @@ npm run build
 # Deploy the dist/ folder to your hosting provider
 ```
 
-## 📈 Performance Metrics
+##  Performance Metrics
 
 ### Core Web Vitals
 - **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
@@ -155,7 +155,7 @@ npm run build
 - **Bundle Size**: < 200KB gzipped
 - **Runtime Performance**: 60fps animations
 
-## 🧪 Testing Strategy
+##  Testing Strategy
 
 ### Unit Tests
 - Component testing with React Testing Library
@@ -172,7 +172,7 @@ npm run build
 - Cross-browser compatibility
 - Mobile responsiveness
 
-## 🔒 Security Considerations
+##  Security Considerations
 
 ### Authentication
 - OAuth 2.0 with Google
@@ -189,7 +189,7 @@ npm run build
 - Rate limiting preparation
 - CORS configuration
 
-## 🌟 Innovation Highlights
+##  Innovation Highlights
 
 ### AI Matching Algorithm
 Our proprietary matching engine considers:
@@ -208,24 +208,24 @@ Our proprietary matching engine considers:
 - **Real-time Sync**: Instant updates across devices
 - **Performance Optimization**: Sub-second load times
 
-## 📋 Future Roadmap
+##  Future Roadmap
 
 ### Phase 1 (Current)
-- ✅ Core matching platform
-- ✅ Multi-device responsive design
-- ✅ Basic notification system
+-  Core matching platform
+-  Multi-device responsive design
+-  Basic notification system
 
 ### Phase 2 (Next 3 months)
-- 🔄 Advanced AI model integration
-- 🔄 Recruiter dashboard enhancement
-- 🔄 Mobile app development
+-  Advanced AI model integration
+-  Recruiter dashboard enhancement
+-  Mobile app development
 
 ### Phase 3 (6 months)
-- 📊 Analytics and insights dashboard
-- 📊 Advanced filtering and search
-- 📊 Integration with job boards APIs
+-  Analytics and insights dashboard
+-  Advanced filtering and search
+-  Integration with job boards APIs
 
-## 👥 Team & Contributions
+##  Team & Contributions
 
 ### Development Team
 - **Frontend Developer**: React, UI/UX implementation
@@ -239,9 +239,13 @@ Our proprietary matching engine considers:
 - **Authentication**: Google OAuth
 - **Deployment**: Modern static hosting platforms
 
-## 📄 License
+##  License
 
 This project is developed for educational and demonstration purposes. All rights reserved.
+
+##  Developpers
+- **Henry-Joel Denkey**: Backend Developer
+- **Abdoul-Rachid BAWA**: FrontEnd Developer
 
 ## 📞 Contact & Support
 
