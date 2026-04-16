@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
+import mockClient from "@/api/mockClient";
 import { useQuery } from "@tanstack/react-query";
 import { Bell, Clock, Trophy, Briefcase, GraduationCap, Code2, ArrowRight, CheckCheck, X } from "lucide-react";
 import { Link } from "react-router-dom";

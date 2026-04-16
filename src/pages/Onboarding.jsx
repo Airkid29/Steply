@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
 import { base44 } from "@/api/base44Client";
+import mockClient from "@/api/mockClient";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";

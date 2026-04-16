@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
+import mockClient from "@/api/mockClient";
 import { Button } from "@/components/ui/button";
 import { LogOut, Sun, Moon, Briefcase, Shield, Bell, Lock, Trash2, Mail } from "lucide-react";
 import { Link } from "react-router-dom";

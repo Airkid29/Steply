@@ -1,4 +1,5 @@
 import { base44 } from "@/api/base44Client";
+import mockClient from "@/api/mockClient";
 import { ArrowRight, Target, Search, FileText, Briefcase, GraduationCap, Code2, Globe, Moon, Sun, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";

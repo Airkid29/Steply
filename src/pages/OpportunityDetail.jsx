@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
+import mockClient from "@/api/mockClient";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Bookmark, BookmarkCheck, MapPin, ExternalLink, FileText, MessageSquare, CheckCircle, Loader2, Globe, Mic, Share2 } from "lucide-react";
