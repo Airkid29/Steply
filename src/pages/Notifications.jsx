@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
-import mockClient from "@/api/mockClient";
 import { useQuery } from "@tanstack/react-query";
 import { Bell, Clock, Trophy, Briefcase, GraduationCap, Code2, ArrowRight, CheckCheck, X } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -74,7 +73,7 @@ export default function Notifications() {
   const [dismissed, setDismissed] = useState(getStoredDismissed);
 
   useEffect(() => {
-    mockClient.auth.me().then(setUser);
+    base44.auth.me().then(setUser).catch(() => setUser(null));
   }, []);
 
   useEffect(() => {
@@ -90,7 +89,7 @@ export default function Notifications() {
   const { data: profile } = useQuery({
     queryKey: ["userProfile", user?.email],
     queryFn: async () => {
-      const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
+      const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
       return profiles[0] || null;
     },
     enabled: !!user?.email,
@@ -98,14 +97,14 @@ export default function Notifications() {
 
   const { data: opportunities = [], isLoading } = useQuery({
     queryKey: ["opportunities"],
-    queryFn: () => mockClient.entities.Opportunity.list("-created_date", 100),
+    queryFn: () => base44.entities.Opportunity.list("-created_date", 100),
   });
 
   const { data: applications = [] } = useQuery({
     queryKey: ["applications", user?.email],
     queryFn: async () => {
       if (!user?.email) return [];
-      return mockClient.entities.Application.filter({ created_by: user.email });
+      return base44.entities.Application.filter({ created_by: user.email });
     },
     enabled: !!user?.email,
   });

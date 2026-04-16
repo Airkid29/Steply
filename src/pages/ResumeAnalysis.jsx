@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import mockClient from "@/api/mockClient";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Upload, FileText, Loader2, CheckCircle, AlertCircle, ChevronRight, RefreshCw } from "lucide-react";
@@ -15,13 +14,13 @@ export default function ResumeAnalysis() {
   const [error, setError] = useState(null);
   const [dragging, setDragging] = useState(false);
 
-  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const { data: profile } = useQuery({
     queryKey: ["userProfile", user?.email],
     queryFn: async () => {
       if (!user?.email) return null;
-      const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
+      const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
       return profiles[0] || null;
     },
     enabled: !!user?.email,
@@ -90,7 +89,7 @@ Analyze the resume and return a structured report with:
       const newSkills = res.skills_found.filter((s) => !existing.has(s));
       if (newSkills.length > 0) {
         const merged = [...(profile.technical_skills || []), ...newSkills];
-        await mockClient.entities.UserProfile.update(profile.id, { technical_skills: merged });
+        await base44.entities.UserProfile.update(profile.id, { technical_skills: merged });
         queryClient.invalidateQueries({ queryKey: ["userProfile"] });
       }
     }

@@ -18,7 +18,7 @@ export default function Dashboard() {
   const [checkedOnboarding, setCheckedOnboarding] = useState(false);
 
   useEffect(() => {
-    base44.auth.me().then(setUser);
+    base44.auth.me().then(setUser).catch(() => setUser(null));
   }, []);
 
   // Redirect to onboarding if not completed

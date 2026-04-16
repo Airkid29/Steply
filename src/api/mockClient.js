@@ -1,6 +1,8 @@
 // Mock client to replace Base44 SDK
 // Provides authentication and entity management with mock data
 
+import { authService } from '@/lib/authService';
+
 const mockUsers = {
   'google:1234567890': {
     id: 'mock-user-google-1',
@@ -232,10 +234,19 @@ let currentUser = null;
 export const mockClient = {
   auth: {
     me: async () => {
-      if (!currentUser) {
-        throw new Error('User not authenticated');
+      // First try currentUser (for same-session persistence)
+      if (currentUser) {
+        return currentUser;
       }
-      return currentUser;
+      
+      // If currentUser is null, try to load from authService (for page refresh)
+      const authUser = authService.getCurrentUser();
+      if (authUser) {
+        currentUser = authUser; // Cache it for this session
+        return authUser;
+      }
+      
+      throw new Error('User not authenticated');
     },
 
     redirectToLogin: (redirectUrl) => {

@@ -18,7 +18,7 @@ export default function Applications() {
   const [user, setUser] = useState(null);
   const [statusFilter, setStatusFilter] = useState("all");
 
-  useEffect(() => { base44.auth.me().then(setUser); }, []);
+  useEffect(() => { base44.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const { data: applications = [], isLoading } = useQuery({
     queryKey: ["applications", user?.email],

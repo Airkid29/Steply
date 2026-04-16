@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import mockClient from "@/api/mockClient";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -52,13 +51,13 @@ export default function Profile() {
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
 
-  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const { data: profile, isLoading } = useQuery({
     queryKey: ["userProfile", user?.email],
     queryFn: async () => {
       if (!user?.email) return null;
-      const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
+      const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
       return profiles[0] || null;
     },
     enabled: !!user?.email,
@@ -73,9 +72,9 @@ export default function Profile() {
       const saveData = { ...data };
       delete saveData.id; delete saveData.created_date; delete saveData.updated_date; delete saveData.created_by;
       if (profile) {
-        await mockClient.entities.UserProfile.update(profile.id, saveData);
+        await base44.entities.UserProfile.update(profile.id, saveData);
       } else {
-        await mockClient.entities.UserProfile.create(saveData);
+        await base44.entities.UserProfile.create(saveData);
       }
     },
     onSuccess: () => {

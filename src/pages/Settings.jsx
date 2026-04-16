@@ -14,7 +14,7 @@ export default function Settings() {
   const [emailNotifs, setEmailNotifs] = useState(true);
   const [pushNotifs, setPushNotifs] = useState(true);
 
-  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const toggleTheme = () => {
     const next = !dark;

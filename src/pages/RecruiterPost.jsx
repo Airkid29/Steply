@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import mockClient from "@/api/mockClient";
 import { queryClientInstance } from "@/lib/query-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,7 +66,7 @@ export default function RecruiterPost() {
     requirements: [], skills_needed: [], domains: [],
   });
 
-  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const set = (key, val) => setForm((p) => ({ ...p, [key]: val }));
 
@@ -80,7 +79,7 @@ export default function RecruiterPost() {
     setSubmitting(true);
     const payload = { ...form };
     if (!payload.deadline) delete payload.deadline;
-    await mockClient.entities.Opportunity.create(payload);
+    await base44.entities.Opportunity.create(payload);
     queryClientInstance.invalidateQueries({ queryKey: ["opportunities"] });
     window.dispatchEvent(new Event('opportunityChanged'));
     setSubmitting(false);

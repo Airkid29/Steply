@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import mockClient from "@/api/mockClient";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { Bookmark } from "lucide-react";
@@ -12,13 +11,13 @@ import SkeletonCard from "../components/shared/SkeletonCard";
 
 export default function Saved() {
   const [user, setUser] = useState(null);
-  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
+  useEffect(() => { base44.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const { data: applications = [], isLoading } = useQuery({
     queryKey: ["applications", user?.email],
     queryFn: async () => {
       if (!user?.email) return [];
-      return mockClient.entities.Application.filter({ created_by: user.email }, "-created_date");
+      return base44.entities.Application.filter({ created_by: user.email }, "-created_date");
     },
     enabled: !!user?.email,
   });

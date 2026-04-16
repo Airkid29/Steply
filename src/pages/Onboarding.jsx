@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
 import { base44 } from "@/api/base44Client";
-import mockClient from "@/api/mockClient";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,7 +19,7 @@ const stepsMeta = [
 
 export default function Onboarding() {
   const navigate = useNavigate();
-  const { user: authUser } = useAuth();
+  const { user: authUser, isLoadingAuth } = useAuth();
   const [step, setStep] = useState(0);
   const [data, setData] = useState({});
   const [saving, setSaving] = useState(false);
@@ -29,6 +28,8 @@ export default function Onboarding() {
   const [resumeError, setResumeError] = useState(null);
 
   useEffect(() => {
+    if (isLoadingAuth) return; // Wait for auth to load
+    
     if (!authUser) {
       navigate('/login', { replace: true });
       return;
@@ -36,12 +37,12 @@ export default function Onboarding() {
 
     setUser(authUser);
     setData((prev) => ({ ...prev, name: authUser.full_name || "", email: authUser.email || "" }));
-  }, [authUser, navigate]);
+  }, [authUser, isLoadingAuth, navigate]);
 
   useEffect(() => {
     // Load existing profile
     if (user?.email) {
-      mockClient.entities.UserProfile.filter({ created_by: user.email }).then((profiles) => {
+      base44.entities.UserProfile.filter({ created_by: user.email }).then((profiles) => {
         if (profiles.length > 0) {
           const p = profiles[0];
           setData((prev) => ({
@@ -58,7 +59,7 @@ export default function Onboarding() {
 
   const saveProgress = async (nextStep) => {
     if (!user?.email) return;
-    const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
+    const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
     const saveData = { ...data, onboarding_step: nextStep };
     delete saveData.id;
     delete saveData.created_date;
@@ -67,9 +68,9 @@ export default function Onboarding() {
     delete saveData.email;
 
     if (profiles.length > 0) {
-      await mockClient.entities.UserProfile.update(profiles[0].id, saveData);
+      await base44.entities.UserProfile.update(profiles[0].id, saveData);
     } else {
-      await mockClient.entities.UserProfile.create(saveData);
+      await base44.entities.UserProfile.create(saveData);
     }
   };
 
@@ -86,7 +87,7 @@ export default function Onboarding() {
 
   const finish = async () => {
     setSaving(true);
-    const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
+    const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
     const saveData = { ...data, onboarding_completed: true, onboarding_step: 4 };
     delete saveData.id;
     delete saveData.created_date;
@@ -95,9 +96,9 @@ export default function Onboarding() {
     delete saveData.email;
 
     if (profiles.length > 0) {
-      await mockClient.entities.UserProfile.update(profiles[0].id, saveData);
+      await base44.entities.UserProfile.update(profiles[0].id, saveData);
     } else {
-      await mockClient.entities.UserProfile.create(saveData);
+      await base44.entities.UserProfile.create(saveData);
     }
     setSaving(false);
     navigate("/dashboard");
@@ -134,6 +135,15 @@ export default function Onboarding() {
       default: return null;
     }
   };
+
+  // Show loading while auth is loading
+  if (isLoadingAuth) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-8">

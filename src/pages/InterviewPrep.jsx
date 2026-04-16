@@ -22,7 +22,7 @@ export default function InterviewPrep() {
   const [done, setDone] = useState(false);
   const textareaRef = useRef(null);
 
-  useEffect(() => { base44.auth.me().then(setUser); }, []);
+  useEffect(() => { base44.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const { data: profile } = useQuery({
     queryKey: ["userProfile", user?.email],

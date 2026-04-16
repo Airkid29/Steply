@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import mockClient from "@/api/mockClient";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Bookmark, BookmarkCheck, MapPin, ExternalLink, FileText, MessageSquare, CheckCircle, Loader2, Globe, Mic, Share2 } from "lucide-react";
@@ -25,12 +24,12 @@ export default function OpportunityDetail() {
   const [actionPlan, setActionPlan] = useState(null);
   const [letter, setLetter] = useState(null);
 
-  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
+  useEffect(() => { base44.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const { data: opportunity, isLoading } = useQuery({
     queryKey: ["opportunity", id],
     queryFn: async () => {
-      const all = await mockClient.entities.Opportunity.list();
+      const all = await base44.entities.Opportunity.list();
       return all.find((o) => String(o.id) === String(id));
     },
   });
@@ -38,7 +37,7 @@ export default function OpportunityDetail() {
   const { data: profile } = useQuery({
     queryKey: ["userProfile", user?.email],
     queryFn: async () => {
-      const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
+      const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
       return profiles[0] || null;
     },
     enabled: !!user?.email,
@@ -48,7 +47,7 @@ export default function OpportunityDetail() {
     queryKey: ["applications", user?.email],
     queryFn: async () => {
       if (!user?.email) return [];
-      return mockClient.entities.Application.filter({ created_by: user.email });
+      return base44.entities.Application.filter({ created_by: user.email });
     },
     enabled: !!user?.email,
   });
@@ -63,9 +62,9 @@ export default function OpportunityDetail() {
   const saveMutation = useMutation({
     mutationFn: async () => {
       if (existingApp) {
-        await mockClient.entities.Application.delete(existingApp.id);
+        await base44.entities.Application.delete(existingApp.id);
       } else {
-        await mockClient.entities.Application.create({
+        await base44.entities.Application.create({
           opportunity_id: String(opportunity.id),
           opportunity_title: opportunity.title,
           opportunity_type: opportunity.type,
@@ -81,7 +80,7 @@ export default function OpportunityDetail() {
 
   const generateActionPlan = async () => {
     setGeneratingPlan(true);
-    const res = await mockClient.integrations.Core.InvokeLLM({
+    const res = await base44.integrations.Core.InvokeLLM({
       prompt: `You are a helpful student career assistant. Generate a concise, practical action plan for a student applying to this opportunity.
 
 Opportunity: ${opportunity.title} (${opportunity.type})
