@@ -11,11 +11,11 @@ import SkeletonCard from "../components/shared/SkeletonCard";
 
 export default function Saved() {
   const [user, setUser] = useState(null);
-  useEffect(() => { base44.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
 
   const { data: applications = [], isLoading } = useQuery({
     queryKey: ["applications", user?.email],
-    queryFn: () => base44.entities.Application.filter({ created_by: user.email }, "-created_date"),
+    queryFn: () => mockClient.entities.Application.filter({ created_by: user.email }, "-created_date"),
     enabled: !!user?.email,
   });
 

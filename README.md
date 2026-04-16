@@ -124,9 +124,10 @@ npm run build
 
 ### Environment Variables
 ```env
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
 ```
+
+> Note: cette version utilise un backend mock local. Les variables `VITE_BASE44_APP_ID` et `VITE_BASE44_APP_BASE_URL` ne sont pas nécessaires tant que vous n’utilisez pas un vrai app Base44.
 
 ## 🚀 Deployment
 

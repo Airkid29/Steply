@@ -66,7 +66,7 @@ export default function RecruiterPost() {
     requirements: [], skills_needed: [], domains: [],
   });
 
-  useEffect(() => { base44.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
 
   const set = (key, val) => setForm((p) => ({ ...p, [key]: val }));
 
@@ -79,7 +79,7 @@ export default function RecruiterPost() {
     setSubmitting(true);
     const payload = { ...form };
     if (!payload.deadline) delete payload.deadline;
-    await base44.entities.Opportunity.create(payload);
+    await mockClient.entities.Opportunity.create(payload);
     queryClientInstance.invalidateQueries({ queryKey: ["opportunities"] });
     window.dispatchEvent(new Event('opportunityChanged'));
     setSubmitting(false);
@@ -120,7 +120,7 @@ export default function RecruiterPost() {
             <span className="text-muted-foreground text-sm ml-1">· For Recruiters</span>
           </div>
           {!user && (
-            <Button variant="outline" onClick={() => base44.auth.redirectToLogin()} className="rounded-full h-9 text-sm">
+            <Button variant="outline" onClick={() => mockClient.auth.redirectToLogin()} className="rounded-full h-9 text-sm">
               Sign in
             </Button>
           )}

@@ -24,12 +24,12 @@ export default function OpportunityDetail() {
   const [actionPlan, setActionPlan] = useState(null);
   const [letter, setLetter] = useState(null);
 
-  useEffect(() => { base44.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
 
   const { data: opportunity, isLoading } = useQuery({
     queryKey: ["opportunity", id],
     queryFn: async () => {
-      const all = await base44.entities.Opportunity.list();
+      const all = await mockClient.entities.Opportunity.list();
       return all.find((o) => String(o.id) === String(id));
     },
   });
@@ -37,7 +37,7 @@ export default function OpportunityDetail() {
   const { data: profile } = useQuery({
     queryKey: ["userProfile", user?.email],
     queryFn: async () => {
-      const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
+      const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
       return profiles[0] || null;
     },
     enabled: !!user?.email,
@@ -45,7 +45,7 @@ export default function OpportunityDetail() {
 
   const { data: applications = [] } = useQuery({
     queryKey: ["applications", user?.email],
-    queryFn: () => base44.entities.Application.filter({ created_by: user.email }),
+    queryFn: () => mockClient.entities.Application.filter({ created_by: user.email }),
     enabled: !!user?.email,
   });
 
@@ -59,9 +59,9 @@ export default function OpportunityDetail() {
   const saveMutation = useMutation({
     mutationFn: async () => {
       if (existingApp) {
-        await base44.entities.Application.delete(existingApp.id);
+        await mockClient.entities.Application.delete(existingApp.id);
       } else {
-        await base44.entities.Application.create({
+        await mockClient.entities.Application.create({
           opportunity_id: String(opportunity.id),
           opportunity_title: opportunity.title,
           opportunity_type: opportunity.type,
@@ -77,7 +77,7 @@ export default function OpportunityDetail() {
 
   const generateActionPlan = async () => {
     setGeneratingPlan(true);
-    const res = await base44.integrations.Core.InvokeLLM({
+    const res = await mockClient.integrations.Core.InvokeLLM({
       prompt: `You are a helpful student career assistant. Generate a concise, practical action plan for a student applying to this opportunity.
 
 Opportunity: ${opportunity.title} (${opportunity.type})
@@ -106,7 +106,7 @@ Give me 5-7 clear action steps. Be specific and student-friendly. Include deadli
 
   const generateMotivationLetter = async () => {
     setGeneratingLetter(true);
-    const res = await base44.integrations.Core.InvokeLLM({
+    const res = await mockClient.integrations.Core.InvokeLLM({
       prompt: `Write a short, compelling motivation letter draft for a student applying to:
 
 Opportunity: ${opportunity.title} (${opportunity.type})

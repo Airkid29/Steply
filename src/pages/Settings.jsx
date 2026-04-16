@@ -13,7 +13,7 @@ export default function Settings() {
   const [emailNotifs, setEmailNotifs] = useState(true);
   const [pushNotifs, setPushNotifs] = useState(true);
 
-  useEffect(() => { base44.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
 
   const toggleTheme = () => {
     const next = !dark;
@@ -159,7 +159,7 @@ export default function Settings() {
 
       <Button
         variant="outline"
-        onClick={() => base44.auth.logout("/")}
+        onClick={() => mockClient.auth.logout("/")}
         className="rounded-xl w-full text-destructive hover:text-destructive border-destructive/20 hover:bg-destructive/5"
       >
         <LogOut className="w-4 h-4 mr-2" />

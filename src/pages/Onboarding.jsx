@@ -40,7 +40,7 @@ export default function Onboarding() {
   useEffect(() => {
     // Load existing profile
     if (user?.email) {
-      base44.entities.UserProfile.filter({ created_by: user.email }).then((profiles) => {
+      mockClient.entities.UserProfile.filter({ created_by: user.email }).then((profiles) => {
         if (profiles.length > 0) {
           const p = profiles[0];
           setData((prev) => ({
@@ -57,7 +57,7 @@ export default function Onboarding() {
 
   const saveProgress = async (nextStep) => {
     if (!user?.email) return;
-    const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
+    const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
     const saveData = { ...data, onboarding_step: nextStep };
     delete saveData.id;
     delete saveData.created_date;
@@ -66,9 +66,9 @@ export default function Onboarding() {
     delete saveData.email;
 
     if (profiles.length > 0) {
-      await base44.entities.UserProfile.update(profiles[0].id, saveData);
+      await mockClient.entities.UserProfile.update(profiles[0].id, saveData);
     } else {
-      await base44.entities.UserProfile.create(saveData);
+      await mockClient.entities.UserProfile.create(saveData);
     }
   };
 
@@ -85,7 +85,7 @@ export default function Onboarding() {
 
   const finish = async () => {
     setSaving(true);
-    const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
+    const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
     const saveData = { ...data, onboarding_completed: true, onboarding_step: 4 };
     delete saveData.id;
     delete saveData.created_date;
@@ -94,9 +94,9 @@ export default function Onboarding() {
     delete saveData.email;
 
     if (profiles.length > 0) {
-      await base44.entities.UserProfile.update(profiles[0].id, saveData);
+      await mockClient.entities.UserProfile.update(profiles[0].id, saveData);
     } else {
-      await base44.entities.UserProfile.create(saveData);
+      await mockClient.entities.UserProfile.create(saveData);
     }
     setSaving(false);
     navigate("/dashboard");

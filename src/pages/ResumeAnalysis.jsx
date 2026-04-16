@@ -14,12 +14,12 @@ export default function ResumeAnalysis() {
   const [error, setError] = useState(null);
   const [dragging, setDragging] = useState(false);
 
-  useEffect(() => { base44.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
 
   const { data: profile } = useQuery({
     queryKey: ["userProfile", user?.email],
     queryFn: async () => {
-      const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
+      const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
       return profiles[0] || null;
     },
     enabled: !!user?.email,
@@ -44,12 +44,12 @@ export default function ResumeAnalysis() {
     if (!file) return;
     setUploading(true);
     setError(null);
-    const uploadRes = await base44.integrations.Core.UploadFile({ file });
+    const uploadRes = await mockClient.integrations.Core.UploadFile({ file });
     const fileUrl = uploadRes.file_url;
     setUploading(false);
     setAnalyzing(true);
 
-    const res = await base44.integrations.Core.InvokeLLM({
+    const res = await mockClient.integrations.Core.InvokeLLM({
       prompt: `You are an expert career advisor for students. Analyze this resume and provide detailed, actionable feedback.
 
 Student profile context:
@@ -88,7 +88,7 @@ Analyze the resume and return a structured report with:
       const newSkills = res.skills_found.filter((s) => !existing.has(s));
       if (newSkills.length > 0) {
         const merged = [...(profile.technical_skills || []), ...newSkills];
-        await base44.entities.UserProfile.update(profile.id, { technical_skills: merged });
+        await mockClient.entities.UserProfile.update(profile.id, { technical_skills: merged });
         queryClient.invalidateQueries({ queryKey: ["userProfile"] });
       }
     }

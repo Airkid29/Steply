@@ -51,12 +51,12 @@ export default function Profile() {
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
 
-  useEffect(() => { base44.auth.me().then(setUser); }, []);
+  useEffect(() => { mockClient.auth.me().then(setUser); }, []);
 
   const { data: profile, isLoading } = useQuery({
     queryKey: ["userProfile", user?.email],
     queryFn: async () => {
-      const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
+      const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
       return profiles[0] || null;
     },
     enabled: !!user?.email,
@@ -71,9 +71,9 @@ export default function Profile() {
       const saveData = { ...data };
       delete saveData.id; delete saveData.created_date; delete saveData.updated_date; delete saveData.created_by;
       if (profile) {
-        await base44.entities.UserProfile.update(profile.id, saveData);
+        await mockClient.entities.UserProfile.update(profile.id, saveData);
       } else {
-        await base44.entities.UserProfile.create(saveData);
+        await mockClient.entities.UserProfile.create(saveData);
       }
     },
     onSuccess: () => {
@@ -88,7 +88,7 @@ export default function Profile() {
     const file = e.target.files?.[0];
     if (!file) return;
     setUploadingPhoto(true);
-    const res = await base44.integrations.Core.UploadFile({ file });
+    const res = await mockClient.integrations.Core.UploadFile({ file });
     updateField("avatar_url", res.file_url);
     setUploadingPhoto(false);
     toast({ title: "Photo uploaded", description: "Don't forget to save your profile." });
@@ -142,7 +142,7 @@ export default function Profile() {
   </table>
 </body>
 </html>`;
-    await base44.integrations.Core.SendEmail({
+    await mockClient.integrations.Core.SendEmail({
       to: user.email,
       subject: "✅ Your Steply alerts are now active",
       body: htmlBody,
