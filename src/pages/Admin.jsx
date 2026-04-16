@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
+import BackButton from "../components/shared/BackButton";
 
 const TYPES = ["scholarship", "hackathon", "internship", "junior_job", "competition"];
 const LEVELS = ["high_school", "bachelor", "master", "phd", "any"];
@@ -213,6 +214,7 @@ export default function Admin() {
   return (
     <div className="space-y-6 animate-fade-in pb-20 lg:pb-0">
       <div className="flex items-center gap-3">
+        <BackButton fallbackTo="/settings" />
         <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
           <Shield className="w-5 h-5 text-primary" />
         </div>

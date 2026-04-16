@@ -127,7 +127,7 @@ npm run build
 VITE_GOOGLE_CLIENT_ID=your_google_client_id
 ```
 
-> Note: cette version utilise un backend mock local. Les variables `VITE_BASE44_APP_ID` et `VITE_BASE44_APP_BASE_URL` ne sont pas nécessaires tant que vous n’utilisez pas un vrai app Base44.
+> Note: this version uses a local mock backend. The `VITE_BASE44_APP_ID` and `VITE_BASE44_APP_BASE_URL` variables are not required unless you connect a real Base44 app.
 
 ##  Deployment
 

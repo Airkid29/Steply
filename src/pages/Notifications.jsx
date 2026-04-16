@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { differenceInDays, format, parseISO } from "date-fns";
 import { computeScore } from "../lib/matchingEngine";
 import SkeletonCard from "../components/shared/SkeletonCard";
+import BackButton from "../components/shared/BackButton";
 
 function buildNotifications(opportunities, profile, applications) {
   const savedIds = new Set((applications || []).map((a) => a.opportunity_id));
@@ -132,7 +133,9 @@ export default function Notifications() {
   return (
     <div className="space-y-6 animate-fade-in pb-20 lg:pb-0">
       <div className="flex items-start justify-between">
-        <div>
+        <div className="flex items-start gap-4">
+          <BackButton className="mt-1" />
+          <div>
           <h1 className="text-2xl font-display font-bold text-foreground flex items-center gap-2">
             Notifications
             {notifications.length > 0 && (
@@ -140,6 +143,7 @@ export default function Notifications() {
             )}
           </h1>
           <p className="text-sm text-muted-foreground mt-0.5">Deadlines, high matches, and important updates</p>
+          </div>
         </div>
         {notifications.length > 0 && (
           <button onClick={dismissAll} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">

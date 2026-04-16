@@ -112,7 +112,7 @@ class AuthService {
       created_at: new Date().toISOString(),
       last_login: new Date().toISOString(),
       is_active: true,
-      password: await this.hashPassword(password) // En production, utiliser bcrypt
+      password: await this.hashPassword(password) // In production, use bcrypt
     };
 
     this.users[email] = user;
@@ -216,7 +216,7 @@ class AuthService {
 
   // Simple password hash (use a real hash in production)
   async hashPassword(password) {
-    // Simulation de hash - en production, utiliser une vraie fonction de hash
+    // Demo-only hash. In production, use a real password hashing function.
     return btoa(password + 'salt_opportunai');
   }
 

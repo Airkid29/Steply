@@ -123,7 +123,7 @@ Student:
 - Skills: ${[...(profile?.technical_skills || [])].join(", ") || "N/A"}
 - Goals: ${(profile?.goals || []).join(", ") || "N/A"}
 
-Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a real student, not a robot. No clichés.`,
+Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a real student, not a robot. No cliches.`,
     });
     setLetter(res);
     setGeneratingLetter(false);
@@ -266,7 +266,8 @@ Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a rea
           }}
         >
           <Share2 className="w-4 h-4 mr-2" />
-              Share
+          Share
+        </Button>
       </div>
 
       {/* AI Action Plan */}

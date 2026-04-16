@@ -8,6 +8,7 @@ import DeadlineBadge from "../components/shared/DeadlineBadge";
 import MatchScore from "../components/shared/MatchScore";
 import EmptyState from "../components/shared/EmptyState";
 import SkeletonCard from "../components/shared/SkeletonCard";
+import BackButton from "../components/shared/BackButton";
 
 export default function Saved() {
   const [user, setUser] = useState(null);
@@ -26,9 +27,12 @@ export default function Saved() {
 
   return (
     <div className="space-y-6 animate-fade-in pb-20 lg:pb-0">
-      <div>
-        <h1 className="text-2xl font-display font-bold">Saved</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">Opportunities you bookmarked</p>
+      <div className="flex items-center gap-4">
+        <BackButton />
+        <div>
+          <h1 className="text-2xl font-display font-bold">Saved</h1>
+          <p className="text-sm text-muted-foreground mt-0.5">Opportunities you bookmarked</p>
+        </div>
       </div>
 
       {isLoading ? (
