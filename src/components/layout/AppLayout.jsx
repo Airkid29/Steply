@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, FolderOpen, User, Bookmark, Settings, Sparkles, LogOut, Menu, X, Bell, FileText, Mic, Shield } from "lucide-react";
+import { LayoutDashboard, FolderOpen, User, Bookmark, Settings, LogOut, Menu, X, Bell, FileText, Mic, Shield } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
@@ -110,9 +110,7 @@ export default function AppLayout() {
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex flex-col fixed inset-y-0 left-0 w-[260px] border-r border-border bg-card z-30">
         <div className="flex items-center gap-2.5 px-6 h-16 border-b border-border">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-primary-foreground" />
-          </div>
+          <div className="w-8 h-8 rounded-lg bg-primary" />
           <span className="font-display font-bold text-lg">Steply</span>
         </div>
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
@@ -141,9 +139,7 @@ export default function AppLayout() {
       {/* Mobile header */}
       <header className="lg:hidden fixed top-0 inset-x-0 h-14 bg-card/95 backdrop-blur-sm border-b border-border z-50 flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-            <Sparkles className="w-3.5 h-3.5 text-primary-foreground" />
-          </div>
+          <div className="w-7 h-7 rounded-lg bg-primary" />
           <span className="font-display font-bold">Steply</span>
         </div>
         <div className="flex items-center gap-1">

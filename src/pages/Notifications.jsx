@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { Bell, Clock, Sparkles, Trophy, Briefcase, GraduationCap, Code2, ArrowRight, CheckCheck, X } from "lucide-react";
+import { Bell, Clock, Trophy, Briefcase, GraduationCap, Code2, ArrowRight, CheckCheck, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { differenceInDays, format, parseISO } from "date-fns";
 import { computeScore } from "../lib/matchingEngine";
@@ -175,7 +175,6 @@ export default function Notifications() {
                     <div className="flex items-center gap-2 mb-0.5">
                       <span className="font-semibold text-sm text-foreground">{n.title}</span>
                       {n.type === "deadline" && <Clock className="w-3.5 h-3.5 text-muted-foreground shrink-0" />}
-                      {n.type === "match" && <Sparkles className="w-3.5 h-3.5 text-primary shrink-0" />}
                     </div>
                     <p className="text-sm text-muted-foreground leading-snug">{n.body}</p>
                     <p className="text-xs text-muted-foreground mt-1">{n.time}</p>

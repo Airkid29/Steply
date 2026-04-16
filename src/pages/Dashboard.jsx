@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Sparkles } from "lucide-react";
 import OpportunityCard from "../components/dashboard/OpportunityCard";
 import FilterBar from "../components/dashboard/FilterBar";
 import ProfileCompletion from "../components/dashboard/ProfileCompletion";
@@ -131,7 +130,6 @@ export default function Dashboard() {
           Array(5).fill(0).map((_, i) => <SkeletonCard key={i} />)
         ) : filtered.length === 0 ? (
           <EmptyState
-            icon={Sparkles}
             title="No opportunities found"
             description={search ? "Try a different search term" : "Check back soon — we're always adding new opportunities."}
             actionLabel={search ? "Clear search" : undefined}

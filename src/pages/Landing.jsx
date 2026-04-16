@@ -1,5 +1,5 @@
 import { base44 } from "@/api/base44Client";
-import { Sparkles, ArrowRight, Target, Search, FileText, Briefcase, GraduationCap, Code2, Globe, Moon, Sun, Trophy } from "lucide-react";
+import { ArrowRight, Target, Search, FileText, Briefcase, GraduationCap, Code2, Globe, Moon, Sun, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -42,9 +42,7 @@ export default function Landing() {
       <nav className="fixed top-0 inset-x-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-primary-foreground" />
-            </div>
+            <div className="w-8 h-8 rounded-lg bg-primary" />
             <span className="font-display font-bold text-xl">Steply</span>
           </div>
           <div className="flex items-center gap-2">
@@ -72,7 +70,6 @@ export default function Landing() {
         <div className="max-w-3xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              <Sparkles className="w-3.5 h-3.5" />
               AI-powered matching for students and graduates
             </div>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1] mb-5">
@@ -197,9 +194,7 @@ export default function Landing() {
       <footer className="border-t border-border py-8 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-primary flex items-center justify-center">
-              <Sparkles className="w-3 h-3 text-primary-foreground" />
-            </div>
+            <div className="w-6 h-6 rounded-md bg-primary" />
             <span className="font-display font-bold text-sm">Steply</span>
           </div>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Briefcase, Plus, X, CheckCircle, Sparkles, Globe } from "lucide-react";
+import { Briefcase, Plus, X, CheckCircle, Globe } from "lucide-react";
 import { ALL_COUNTRIES } from "@/lib/countries";
 import { OPPORTUNITY_DOMAINS } from "@/lib/sectors";
 import { useToast } from "@/components/ui/use-toast";
@@ -115,9 +115,7 @@ export default function RecruiterPost() {
       <nav className="fixed top-0 inset-x-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-primary-foreground" />
-            </div>
+            <div className="w-8 h-8 rounded-lg bg-primary" />
             <span className="font-display font-bold text-xl">Steply</span>
             <span className="text-muted-foreground text-sm ml-1">· For Recruiters</span>
           </div>

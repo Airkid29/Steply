@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Bookmark, BookmarkCheck, MapPin, ExternalLink, Sparkles, FileText, MessageSquare, CheckCircle, Loader2, Globe, Mic, Share2 } from "lucide-react";
+import { ArrowLeft, Bookmark, BookmarkCheck, MapPin, ExternalLink, FileText, MessageSquare, CheckCircle, Loader2, Globe, Mic, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 import TypeBadge from "../components/shared/TypeBadge";
@@ -183,9 +183,7 @@ Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a rea
       {/* Match explanation */}
       <div className="bg-primary/5 border border-primary/15 rounded-xl p-5">
         <div className="flex items-start gap-3">
-          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-            <Sparkles className="w-4 h-4 text-primary" />
-          </div>
+          <div className="w-8 h-8 rounded-lg bg-primary/10 shrink-0 mt-0.5" />
           <div>
             <h3 className="font-semibold text-sm mb-1">Why this matches you</h3>
             <p className="text-sm text-foreground/80 mb-3">{explanation}</p>
@@ -278,7 +276,7 @@ Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a rea
           </h3>
           {!actionPlan && (
             <Button size="sm" variant="outline" onClick={generateActionPlan} disabled={generatingPlan} className="rounded-lg text-xs">
-              {generatingPlan ? <Loader2 className="w-3 h-3 mr-1.5 animate-spin" /> : <Sparkles className="w-3 h-3 mr-1.5" />}
+              {generatingPlan ? <Loader2 className="w-3 h-3 mr-1.5 animate-spin" /> : null}
               Generate
             </Button>
           )}
@@ -320,7 +318,7 @@ Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a rea
           </h3>
           {!letter && (
             <Button size="sm" variant="outline" onClick={generateMotivationLetter} disabled={generatingLetter} className="rounded-lg text-xs">
-              {generatingLetter ? <Loader2 className="w-3 h-3 mr-1.5 animate-spin" /> : <Sparkles className="w-3 h-3 mr-1.5" />}
+              {generatingLetter ? <Loader2 className="w-3 h-3 mr-1.5 animate-spin" /> : null}
               Generate
             </Button>
           )}

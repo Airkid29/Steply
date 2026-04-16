@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Upload, FileText, Sparkles, Loader2, CheckCircle, AlertCircle, ChevronRight, RefreshCw } from "lucide-react";
+import { Upload, FileText, Loader2, CheckCircle, AlertCircle, ChevronRight, RefreshCw } from "lucide-react";
 
 export default function ResumeAnalysis() {
   const queryClient = useQueryClient();
@@ -160,7 +160,7 @@ Analyze the resume and return a structured report with:
           ) : analyzing ? (
             <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Analyzing your resume...</>
           ) : (
-            <><Sparkles className="w-4 h-4 mr-2" /> Analyze Resume</>
+            <>Analyze Resume</>
           )}
         </Button>
       )}
@@ -250,8 +250,7 @@ Analyze the resume and return a structured report with:
           {/* Skills found */}
           {analysis.skills_found?.length > 0 && (
             <div className="bg-card border border-border rounded-xl p-5">
-              <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-primary" />
+              <h3 className="font-semibold text-sm mb-3">
                 Skills Detected
                 <span className="text-xs text-muted-foreground font-normal ml-1">— added to your profile</span>
               </h3>

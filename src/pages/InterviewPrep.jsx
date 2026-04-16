@@ -4,7 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Mic, Send, Sparkles, Loader2, ArrowLeft, ChevronRight, RefreshCw, RotateCcw, CheckCircle, Star } from "lucide-react";
+import { Mic, Send, Loader2, ArrowLeft, ChevronRight, RefreshCw, RotateCcw, CheckCircle, Star } from "lucide-react";
 import TypeBadge from "../components/shared/TypeBadge";
 import SkeletonCard from "../components/shared/SkeletonCard";
 
@@ -321,9 +321,7 @@ Evaluate the answer and provide:
 
           {/* Ideal hint */}
           <div className="bg-primary/5 border border-primary/15 rounded-xl p-4">
-            <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5" /> Ideal answer hint
-            </p>
+            <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">Ideal answer hint</p>
             <p className="text-sm text-foreground/80">{feedback.ideal_hint}</p>
           </div>
 

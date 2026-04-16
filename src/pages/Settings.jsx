@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { LogOut, Sparkles, Sun, Moon, Briefcase, Shield, Bell, Lock, Trash2, Mail } from "lucide-react";
+import { LogOut, Sun, Moon, Briefcase, Shield, Bell, Lock, Trash2, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getTheme, setTheme } from "@/lib/theme";
 import { Switch } from "@/components/ui/switch";
@@ -149,9 +149,7 @@ export default function Settings() {
       <section className="bg-card rounded-xl border border-border p-5 space-y-4">
         <h2 className="font-semibold text-sm">About</h2>
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-            <Sparkles className="w-5 h-5 text-primary" />
-          </div>
+          <div className="w-10 h-10 rounded-xl bg-primary/10" />
           <div>
             <p className="text-sm font-medium">Steply</p>
             <p className="text-xs text-muted-foreground">AI career agent for students & graduates · v2.0</p>
