@@ -8,6 +8,8 @@ import ProfileCompletion from "../components/dashboard/ProfileCompletion";
 import SkeletonCard from "../components/shared/SkeletonCard";
 import EmptyState from "../components/shared/EmptyState";
 import { computeScore, generateExplanation } from "../lib/matchingEngine";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -112,6 +114,10 @@ export default function Dashboard() {
     <div className="space-y-6 animate-fade-in pb-20 lg:pb-0">
       {/* Welcome */}
       <div>
+        <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="mb-2 flex items-center gap-2">
+          <ArrowLeft className="w-4 h-4" />
+          Back
+        </Button>
         <h1 className="text-2xl font-display font-bold text-foreground">
           Hey {firstName} 👋
         </h1>

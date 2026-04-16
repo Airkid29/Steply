@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Upload, FileText, Loader2, CheckCircle, AlertCircle, ChevronRight, RefreshCw } from "lucide-react";
-import BackButton from "../components/shared/BackButton";
+import { Upload, FileText, Loader2, CheckCircle, AlertCircle, ChevronRight, RefreshCw, ArrowLeft } from "lucide-react";
 
 export default function ResumeAnalysis() {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [user, setUser] = useState(null);
   const [file, setFile] = useState(null);
@@ -101,12 +102,13 @@ Analyze the resume and return a structured report with:
 
   return (
     <div className="space-y-6 animate-fade-in pb-20 lg:pb-0">
-      <div className="flex items-center gap-4">
-        <BackButton />
-        <div>
-          <h1 className="text-2xl font-display font-bold text-foreground">Resume Analysis</h1>
-          <p className="text-sm text-muted-foreground mt-0.5">Upload your resume and get instant AI-powered feedback</p>
-        </div>
+      <div>
+        <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="mb-2 flex items-center gap-2">
+          <ArrowLeft className="w-4 h-4" />
+          Back
+        </Button>
+        <h1 className="text-2xl font-display font-bold text-foreground">Resume Analysis</h1>
+        <p className="text-sm text-muted-foreground mt-0.5">Upload your resume and get instant AI-powered feedback</p>
       </div>
 
       {/* Upload area */}

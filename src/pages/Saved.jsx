@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Bookmark } from "lucide-react";
+import { Bookmark, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import TypeBadge from "../components/shared/TypeBadge";
 import DeadlineBadge from "../components/shared/DeadlineBadge";
 import MatchScore from "../components/shared/MatchScore";
 import EmptyState from "../components/shared/EmptyState";
 import SkeletonCard from "../components/shared/SkeletonCard";
-import BackButton from "../components/shared/BackButton";
 
 export default function Saved() {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   useEffect(() => { base44.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
@@ -27,12 +29,13 @@ export default function Saved() {
 
   return (
     <div className="space-y-6 animate-fade-in pb-20 lg:pb-0">
-      <div className="flex items-center gap-4">
-        <BackButton />
-        <div>
-          <h1 className="text-2xl font-display font-bold">Saved</h1>
-          <p className="text-sm text-muted-foreground mt-0.5">Opportunities you bookmarked</p>
-        </div>
+      <div>
+        <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="mb-2 flex items-center gap-2">
+          <ArrowLeft className="w-4 h-4" />
+          Back
+        </Button>
+        <h1 className="text-2xl font-display font-bold">Saved</h1>
+        <p className="text-sm text-muted-foreground mt-0.5">Opportunities you bookmarked</p>
       </div>
 
       {isLoading ? (

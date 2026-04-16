@@ -1,12 +1,12 @@
 import { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
-import { Bell, Clock, Trophy, Briefcase, GraduationCap, Code2, ArrowRight, CheckCheck, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Bell, Clock, Trophy, Briefcase, GraduationCap, Code2, ArrowRight, CheckCheck, X, ArrowLeft } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { differenceInDays, format, parseISO } from "date-fns";
 import { computeScore } from "../lib/matchingEngine";
 import SkeletonCard from "../components/shared/SkeletonCard";
-import BackButton from "../components/shared/BackButton";
+import { Button } from "@/components/ui/button";
 
 function buildNotifications(opportunities, profile, applications) {
   const savedIds = new Set((applications || []).map((a) => a.opportunity_id));
@@ -70,6 +70,7 @@ function getStoredDismissed() {
 }
 
 export default function Notifications() {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [dismissed, setDismissed] = useState(getStoredDismissed);
 
@@ -133,9 +134,11 @@ export default function Notifications() {
   return (
     <div className="space-y-6 animate-fade-in pb-20 lg:pb-0">
       <div className="flex items-start justify-between">
-        <div className="flex items-start gap-4">
-          <BackButton className="mt-1" />
-          <div>
+        <div>
+          <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="mb-2 flex items-center gap-2">
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </Button>
           <h1 className="text-2xl font-display font-bold text-foreground flex items-center gap-2">
             Notifications
             {notifications.length > 0 && (
@@ -143,7 +146,6 @@ export default function Notifications() {
             )}
           </h1>
           <p className="text-sm text-muted-foreground mt-0.5">Deadlines, high matches, and important updates</p>
-          </div>
         </div>
         {notifications.length > 0 && (
           <button onClick={dismissAll} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
