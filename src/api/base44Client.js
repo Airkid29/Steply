@@ -597,7 +597,7 @@ export const base44 = {
 
       create: async (data) => {
         const user = authService.getCurrentUser();
-        if (!user) throw new Error('Utilisateur non authentifié');
+        if (!user) throw new Error('User not authenticated');
         const profile = {
           ...data,
           id: user.id,
@@ -613,7 +613,7 @@ export const base44 = {
 
       update: async (id, data) => {
         const user = authService.getCurrentUser();
-        if (!user) throw new Error('Utilisateur non authentifié');
+        if (!user) throw new Error('User not authenticated');
         const existingProfile = authService.getProfile(user.email) || {};
         const updatedProfile = {
           ...existingProfile,
@@ -653,7 +653,7 @@ export const base44 = {
 
       create: async (data) => {
         const user = authService.getCurrentUser();
-        if (!user) throw new Error('Utilisateur non authentifié');
+        if (!user) throw new Error('User not authenticated');
         const applications = loadApplications();
         const newApp = {
           ...data,

@@ -261,13 +261,12 @@ Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a rea
               navigator.share({ title: opportunity.title, url });
             } else {
               navigator.clipboard.writeText(url);
-              toast({ title: "Lien copié !", description: "Partagez cette opportunité avec vos amis." });
+              toast({ title: "Link copied!", description: "Share this opportunity with your friends." });
             }
           }}
         >
           <Share2 className="w-4 h-4 mr-2" />
-          Partager
-        </Button>
+              Share
       </div>
 
       {/* AI Action Plan */}

@@ -17,7 +17,7 @@ const levels = [
 const goalOptions = ["scholarship", "internship", "hackathon", "junior_job", "competition"];
 const goalLabels = { scholarship: "Scholarships", internship: "Internships", hackathon: "Hackathons", junior_job: "Junior Jobs", competition: "Competitions" };
 
-function TagEditor({ tags, onChange, placeholder = "Ajouter..." }) {
+function TagEditor({ tags, onChange, placeholder = "Add..." }) {
   const [input, setInput] = useState("");
   const add = () => {
     const t = input.trim();
@@ -167,7 +167,7 @@ export default function Profile() {
         </Button>
       </div>
 
-      {/* Photo de profil */}
+      {/* Profile photo */}
       <section className="bg-card rounded-xl border border-border p-5">
         <h2 className="font-semibold text-sm flex items-center gap-2 mb-4"><Camera className="w-4 h-4 text-primary" /> Profile photo</h2>
         <div className="flex items-center gap-5">

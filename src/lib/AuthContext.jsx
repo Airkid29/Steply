@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Auth check failed:', error);
       setAuthError({
         type: 'auth_check_failed',
-        message: 'Erreur lors de la vérification de l\'authentification'
+        message: 'Error verifying authentication'
       });
       setIsAuthenticated(false);
     } finally {
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Google login failed:', error);
       setAuthError({
         type: 'login_failed',
-        message: error.message || 'Échec de la connexion Google'
+        message: error.message || 'Google sign-in failed'
       });
       setIsLoadingAuth(false);
       throw error;
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Email login failed:', error);
       setAuthError({
         type: 'login_failed',
-        message: error.message || 'Échec de la connexion'
+        message: error.message || 'Login failed'
       });
       setIsLoadingAuth(false);
       throw error;
@@ -99,7 +99,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Email registration failed:', error);
       setAuthError({
         type: 'registration_failed',
-        message: error.message || 'Échec de l\'inscription'
+        message: error.message || 'Registration failed'
       });
       setIsLoadingAuth(false);
       throw error;

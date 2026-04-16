@@ -1,6 +1,6 @@
 import { handleGoogleSuccess } from './googleAuthService';
 
-// Service d'authentification personnalisé
+// Custom authentication service
 const normalizeEmail = (email) => (typeof email === 'string' ? email.trim().toLowerCase() : email);
 
 class AuthService {
@@ -16,7 +16,7 @@ class AuthService {
     return Object.values(this.users).find((user) => normalizeEmail(user.email) === normalized) || null;
   }
 
-  // Charger les utilisateurs depuis localStorage
+  // Load users from localStorage
   loadUsers() {
     try {
       const users = localStorage.getItem('opportunai_users');
@@ -26,12 +26,12 @@ class AuthService {
     }
   }
 
-  // Sauvegarder les utilisateurs
+  // Save users
   saveUsers() {
     localStorage.setItem('opportunai_users', JSON.stringify(this.users));
   }
 
-  // Charger l'utilisateur actuel
+  // Load current user
   loadCurrentUser() {
     try {
       const user = localStorage.getItem('opportunai_current_user');
@@ -41,7 +41,7 @@ class AuthService {
     }
   }
 
-  // Sauvegarder l'utilisateur actuel
+  // Save current user
   saveCurrentUser() {
     if (this.currentUser) {
       localStorage.setItem('opportunai_current_user', JSON.stringify(this.currentUser));
@@ -50,17 +50,17 @@ class AuthService {
     }
   }
 
-  // Connexion avec Google
+  // Google login
   async loginWithGoogle(credentialResponse) {
     try {
       const userInfo = handleGoogleSuccess(credentialResponse);
       const email = normalizeEmail(userInfo.email);
 
-      // Vérifier si l'utilisateur existe déjà
+      // Check if user already exists
       let user = this.findUserByEmail(email);
 
       if (!user) {
-        // Créer un nouvel utilisateur
+        // Create a new user
         user = {
           id: userInfo.id,
           email,
@@ -75,7 +75,7 @@ class AuthService {
         this.users[userInfo.email] = user;
         this.saveUsers();
       } else {
-        // Mettre à jour la dernière connexion
+        // Update last login
         user.last_login = new Date().toISOString();
         if (user.email !== email) {
           user.email = email;
@@ -92,15 +92,15 @@ class AuthService {
         needsOnboarding: !this.hasProfile(user.email)
       };
     } catch (error) {
-      throw new Error('Échec de la connexion Google: ' + error.message);
+      throw new Error('Google login failed: ' + error.message);
     }
   }
 
-  // Inscription par email
+  // Register by email
   async registerWithEmail(email, password, userData = {}) {
     const normalizedEmail = normalizeEmail(email);
     if (this.findUserByEmail(normalizedEmail)) {
-      throw new Error('Un compte existe déjà avec cet email');
+      throw new Error('An account already exists with this email');
     }
 
     const user = {
@@ -127,18 +127,18 @@ class AuthService {
     };
   }
 
-  // Connexion par email
+  // Login by email
   async loginWithEmail(email, password) {
     const normalizedEmail = normalizeEmail(email);
     const user = this.findUserByEmail(normalizedEmail);
 
     if (!user || user.auth_provider !== 'email') {
-      throw new Error('Email ou mot de passe incorrect');
+      throw new Error('Incorrect email or password');
     }
 
-    // Vérifier le mot de passe (en production, utiliser bcrypt.compare)
+    // Verify password (use bcrypt.compare in production)
     if (!(await this.verifyPassword(password, user.password))) {
-      throw new Error('Email ou mot de passe incorrect');
+      throw new Error('Incorrect email or password');
     }
 
     user.last_login = new Date().toISOString();
@@ -157,30 +157,30 @@ class AuthService {
     };
   }
 
-  // Déconnexion
+  // Logout
   logout() {
     this.currentUser = null;
     this.saveCurrentUser();
   }
 
-  // Obtenir l'utilisateur actuel
+  // Get current user
   getCurrentUser() {
     return this.currentUser;
   }
 
-  // Vérifier si l'utilisateur est authentifié
+  // Check if user is authenticated
   isAuthenticated() {
     return !!this.currentUser;
   }
 
-  // Vérifier si l'utilisateur a un profil
+  // Check if user has a profile
   hasProfile(email) {
     const normalizedEmail = normalizeEmail(email);
     const profiles = this.loadProfiles();
     return !!profiles[normalizedEmail];
   }
 
-  // Charger les profils
+  // Load profiles
   loadProfiles() {
     try {
       const profiles = localStorage.getItem('opportunai_profiles');
@@ -190,7 +190,7 @@ class AuthService {
     }
   }
 
-  // Sauvegarder un profil
+  // Save a profile
   saveProfile(email, profile) {
     const normalizedEmail = normalizeEmail(email);
     const profiles = this.loadProfiles();
@@ -202,25 +202,25 @@ class AuthService {
     localStorage.setItem('opportunai_profiles', JSON.stringify(profiles));
   }
 
-  // Obtenir le profil d'un utilisateur
+  // Get a user's profile
   getProfile(email) {
     const normalizedEmail = normalizeEmail(email);
     const profiles = this.loadProfiles();
     return profiles[normalizedEmail] || null;
   }
 
-  // Obtenir tous les comptes utilisateurs enregistrés
+  // Get all registered user accounts
   listUsers() {
     return Object.values(this.users);
   }
 
-  // Hash simple du mot de passe (en production, utiliser bcrypt)
+  // Simple password hash (use a real hash in production)
   async hashPassword(password) {
     // Simulation de hash - en production, utiliser une vraie fonction de hash
     return btoa(password + 'salt_opportunai');
   }
 
-  // Vérification du mot de passe
+  // Verify password
   async verifyPassword(password, hash) {
     return await this.hashPassword(password) === hash;
   }

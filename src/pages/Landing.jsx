@@ -59,7 +59,7 @@ export default function Landing() {
               </Button>
             </Link>
             <Button onClick={() => window.location.href = '/login'} className="rounded-full px-5 h-9 text-sm">
-              Se connecter
+              Log In
             </Button>
           </div>
         </div>
@@ -82,7 +82,7 @@ export default function Landing() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button onClick={() => window.location.href = '/login'} size="lg" className="rounded-full px-8 h-12 text-base font-medium shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all">
-                Commencer gratuitement
+                Start for free
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               <Link to="/post-opportunity">
@@ -92,7 +92,7 @@ export default function Landing() {
                 </Button>
               </Link>
             </div>
-            <p className="text-xs text-muted-foreground mt-4">Connectez-vous avec Google ou créez un compte email. Gratuit pour les étudiants.</p>
+            <p className="text-xs text-muted-foreground mt-4">Log in with Google or create an email account. Free for students.</p>
           </motion.div>
         </div>
       </section>

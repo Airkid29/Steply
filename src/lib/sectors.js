@@ -12,7 +12,7 @@ export const FIELDS_OF_STUDY = [
   "Aerospace Engineering",
   "Biomedical Engineering",
   "Environmental Engineering",
-  // Sciences naturelles
+  // Natural sciences
   "Mathematics",
   "Physics",
   "Chemistry",
@@ -20,7 +20,7 @@ export const FIELDS_OF_STUDY = [
   "Environmental Science",
   "Geology",
   "Astronomy",
-  // Santé
+  // Health
   "Medicine",
   "Pharmacy",
   "Nursing",
@@ -30,7 +30,7 @@ export const FIELDS_OF_STUDY = [
   "Veterinary Medicine",
   "Psychology",
   "Physiotherapy",
-  // Business & Gestion
+  // Business & Management
   "Business & Management",
   "Finance",
   "Accounting",
@@ -41,7 +41,7 @@ export const FIELDS_OF_STUDY = [
   "International Business",
   "Economics",
   "Banking & Insurance",
-  // Droit & Sciences sociales
+  // Law & Social Sciences
   "Law",
   "Political Science",
   "Sociology",
@@ -49,7 +49,7 @@ export const FIELDS_OF_STUDY = [
   "International Relations",
   "Public Administration",
   "Social Work",
-  // Arts & Humanités
+  // Arts & Humanities
   "Architecture",
   "Graphic Design",
   "Industrial Design",
@@ -61,16 +61,16 @@ export const FIELDS_OF_STUDY = [
   "History",
   "Philosophy",
   "Literature",
-  // Éducation & Sport
+  // Education & Sports
   "Education",
   "Sports Science",
   "Physical Education",
-  // Agriculture & Environnement
+  // Agriculture & Environment
   "Agriculture",
   "Food Science",
   "Forestry",
   "Veterinary Science",
-  // Autre
+  // Other
   "Other"
 ];
 

@@ -69,16 +69,16 @@ export default function AuthForm() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center">OpportunAI</CardTitle>
+          <CardTitle className="text-2xl text-center">Steply</CardTitle>
           <CardDescription className="text-center">
-            Connectez-vous à votre compte ou créez-en un
+            Log in to your account or create one
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Connexion</TabsTrigger>
-              <TabsTrigger value="register">Inscription</TabsTrigger>
+              <TabsTrigger value="login">Login</TabsTrigger>
+              <TabsTrigger value="register">Register</TabsTrigger>
             </TabsList>
 
             <TabsContent value="login" className="space-y-4">
@@ -92,11 +92,11 @@ export default function AuthForm() {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="votre@email.com"
+                    placeholder="you@example.com"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password">Mot de passe</Label>
+                  <Label htmlFor="password">Password</Label>
                   <Input
                     id="password"
                     name="password"
@@ -104,7 +104,7 @@ export default function AuthForm() {
                     required
                     value={formData.password}
                     onChange={handleInputChange}
-                    placeholder="Votre mot de passe"
+                    placeholder="Your password"
                   />
                 </div>
                 {error && (
@@ -113,7 +113,7 @@ export default function AuthForm() {
                   </Alert>
                 )}
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? 'Connexion...' : 'Se connecter'}
+                  {isLoading ? 'Signing in...' : 'Log in'}
                 </Button>
               </form>
 
@@ -122,7 +122,7 @@ export default function AuthForm() {
                   <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">Ou</span>
+                  <span className="bg-background px-2 text-muted-foreground">Or</span>
                 </div>
               </div>
 
@@ -132,7 +132,7 @@ export default function AuthForm() {
             <TabsContent value="register" className="space-y-4">
               <form onSubmit={handleRegister} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="fullName">Nom complet</Label>
+                  <Label htmlFor="fullName">Full name</Label>
                   <Input
                     id="fullName"
                     name="fullName"
@@ -140,7 +140,7 @@ export default function AuthForm() {
                     required
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    placeholder="Votre nom complet"
+                    placeholder="Your full name"
                   />
                 </div>
                 <div className="space-y-2">
@@ -152,11 +152,11 @@ export default function AuthForm() {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="votre@email.com"
+                    placeholder="you@example.com"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password">Mot de passe</Label>
+                  <Label htmlFor="password">Password</Label>
                   <Input
                     id="password"
                     name="password"
@@ -164,7 +164,7 @@ export default function AuthForm() {
                     required
                     value={formData.password}
                     onChange={handleInputChange}
-                    placeholder="Votre mot de passe"
+                    placeholder="Your password"
                   />
                 </div>
                 {error && (
@@ -173,7 +173,7 @@ export default function AuthForm() {
                   </Alert>
                 )}
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? 'Inscription...' : 'S\'inscrire'}
+                  {isLoading ? 'Registering...' : 'Register'}
                 </Button>
               </form>
 
@@ -182,7 +182,7 @@ export default function AuthForm() {
                   <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">Ou</span>
+                  <span className="bg-background px-2 text-muted-foreground">Or</span>
                 </div>
               </div>
 
