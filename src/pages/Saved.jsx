@@ -16,7 +16,10 @@ export default function Saved() {
 
   const { data: applications = [], isLoading } = useQuery({
     queryKey: ["applications", user?.email],
-    queryFn: () => mockClient.entities.Application.filter({ created_by: user.email }, "-created_date"),
+    queryFn: async () => {
+      if (!user?.email) return [];
+      return mockClient.entities.Application.filter({ created_by: user.email }, "-created_date");
+    },
     enabled: !!user?.email,
   });
 

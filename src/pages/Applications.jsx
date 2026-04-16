@@ -22,7 +22,10 @@ export default function Applications() {
 
   const { data: applications = [], isLoading } = useQuery({
     queryKey: ["applications", user?.email],
-    queryFn: () => base44.entities.Application.filter({ created_by: user.email }, "-created_date"),
+    queryFn: async () => {
+      if (!user?.email) return [];
+      return base44.entities.Application.filter({ created_by: user.email }, "-created_date");
+    },
     enabled: !!user?.email,
   });
 

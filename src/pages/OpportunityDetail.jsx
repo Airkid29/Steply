@@ -46,7 +46,10 @@ export default function OpportunityDetail() {
 
   const { data: applications = [] } = useQuery({
     queryKey: ["applications", user?.email],
-    queryFn: () => mockClient.entities.Application.filter({ created_by: user.email }),
+    queryFn: async () => {
+      if (!user?.email) return [];
+      return mockClient.entities.Application.filter({ created_by: user.email });
+    },
     enabled: !!user?.email,
   });
 

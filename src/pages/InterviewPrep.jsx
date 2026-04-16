@@ -27,6 +27,7 @@ export default function InterviewPrep() {
   const { data: profile } = useQuery({
     queryKey: ["userProfile", user?.email],
     queryFn: async () => {
+      if (!user?.email) return null;
       const profiles = await base44.entities.UserProfile.filter({ created_by: user.email });
       return profiles[0] || null;
     },
@@ -35,7 +36,10 @@ export default function InterviewPrep() {
 
   const { data: applications = [], isLoading: loadingApps } = useQuery({
     queryKey: ["applications", user?.email],
-    queryFn: () => base44.entities.Application.filter({ created_by: user.email }),
+    queryFn: async () => {
+      if (!user?.email) return [];
+      return base44.entities.Application.filter({ created_by: user.email });
+    },
     enabled: !!user?.email,
   });
 

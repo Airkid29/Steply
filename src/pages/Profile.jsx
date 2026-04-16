@@ -57,6 +57,7 @@ export default function Profile() {
   const { data: profile, isLoading } = useQuery({
     queryKey: ["userProfile", user?.email],
     queryFn: async () => {
+      if (!user?.email) return null;
       const profiles = await mockClient.entities.UserProfile.filter({ created_by: user.email });
       return profiles[0] || null;
     },
