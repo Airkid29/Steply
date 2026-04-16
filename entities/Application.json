@@ -1,0 +1,60 @@
+{
+  "name": "Application",
+  "type": "object",
+  "properties": {
+    "opportunity_id": {
+      "type": "string",
+      "description": "Reference to the opportunity"
+    },
+    "opportunity_title": {
+      "type": "string",
+      "description": "Cached title for quick display"
+    },
+    "opportunity_type": {
+      "type": "string",
+      "description": "Cached type for quick display"
+    },
+    "opportunity_deadline": {
+      "type": "string",
+      "description": "Cached deadline"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "saved",
+        "preparing",
+        "applied",
+        "archived"
+      ],
+      "default": "saved",
+      "description": "Current application status"
+    },
+    "compatibility_score": {
+      "type": "number",
+      "description": "Cached compatibility score"
+    },
+    "ai_explanation": {
+      "type": "string",
+      "description": "Cached AI match explanation"
+    },
+    "action_plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Generated action plan steps"
+    },
+    "motivation_letter": {
+      "type": "string",
+      "description": "Generated motivation letter draft"
+    },
+    "notes": {
+      "type": "string",
+      "description": "User notes"
+    }
+  },
+  "required": [
+    "opportunity_id",
+    "opportunity_title"
+  ]
+}

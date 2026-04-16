@@ -1,0 +1,83 @@
+{
+  "name": "Opportunity",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the opportunity"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "scholarship",
+        "hackathon",
+        "internship",
+        "junior_job",
+        "competition"
+      ],
+      "description": "Type of opportunity"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full description"
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of requirements"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date",
+      "description": "Application deadline"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country or Remote"
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Relevant domains"
+    },
+    "url": {
+      "type": "string",
+      "description": "External link"
+    },
+    "organizer": {
+      "type": "string",
+      "description": "Organizing company or institution"
+    },
+    "is_remote": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether opportunity is remote"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "high_school",
+        "bachelor",
+        "master",
+        "phd",
+        "any"
+      ],
+      "description": "Target academic level"
+    },
+    "skills_needed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Skills needed for this opportunity"
+    }
+  },
+  "required": [
+    "title",
+    "type"
+  ]
+}

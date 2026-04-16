@@ -1,0 +1,81 @@
+{
+  "name": "UserProfile",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the student"
+    },
+    "avatar_url": {
+      "type": "string",
+      "description": "Profile photo URL"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country of residence"
+    },
+    "field_of_study": {
+      "type": "string",
+      "description": "Main field of study"
+    },
+    "academic_level": {
+      "type": "string",
+      "enum": [
+        "high_school",
+        "bachelor_1",
+        "bachelor_2",
+        "bachelor_3",
+        "master_1",
+        "master_2",
+        "phd"
+      ],
+      "description": "Current academic level"
+    },
+    "technical_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of technical skills"
+    },
+    "soft_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of soft skills"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Languages spoken"
+    },
+    "goals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Career goals: scholarship, internship, hackathon, junior_job, competition"
+    },
+    "email_notifications": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the user wants email notifications for new matching opportunities"
+    },
+    "onboarding_completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether onboarding is complete"
+    },
+    "onboarding_step": {
+      "type": "number",
+      "default": 0,
+      "description": "Current onboarding step"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
