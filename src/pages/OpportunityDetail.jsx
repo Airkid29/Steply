@@ -109,7 +109,7 @@ Give me 5-7 clear action steps. Be specific and student-friendly. Include deadli
 
   const generateMotivationLetter = async () => {
     setGeneratingLetter(true);
-    const res = await mockClient.integrations.Core.InvokeLLM({
+      const res = await base44.integrations.Core.InvokeLLM({
       prompt: `Write a short, compelling motivation letter draft for a student applying to:
 
 Opportunity: ${opportunity.title} (${opportunity.type})

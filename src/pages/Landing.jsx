@@ -1,5 +1,4 @@
 import { base44 } from "@/api/base44Client";
-import mockClient from "@/api/mockClient";
 import { ArrowRight, Target, Search, FileText, Briefcase, GraduationCap, Code2, Globe, Moon, Sun, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -184,7 +183,7 @@ export default function Landing() {
             Ready to find your match?
           </h2>
           <p className="text-muted-foreground mb-8">Join thousands of students already using Steply.</p>
-          <Button onClick={() => mockClient.auth.redirectToLogin()} size="lg" className="rounded-full px-8 h-12 text-base font-medium shadow-lg shadow-primary/25">
+          <Button onClick={() => base44.auth.redirectToLogin()} size="lg" className="rounded-full px-8 h-12 text-base font-medium shadow-lg shadow-primary/25">
             Sign in with Google or LinkedIn
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>

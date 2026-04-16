@@ -27,7 +27,7 @@ export const handleGoogleSuccess = (credentialResponse) => {
 
   return {
     id: decoded.sub,
-    email: decoded.email,
+    email: decoded.email?.trim().toLowerCase(),
     full_name: decoded.name || decoded.email.split('@')[0],
     picture: decoded.picture,
     auth_provider: 'google',

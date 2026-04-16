@@ -1,10 +1,19 @@
 import { handleGoogleSuccess } from './googleAuthService';
 
 // Service d'authentification personnalisé
+const normalizeEmail = (email) => (typeof email === 'string' ? email.trim().toLowerCase() : email);
+
 class AuthService {
   constructor() {
     this.users = this.loadUsers();
     this.currentUser = this.loadCurrentUser();
+  }
+
+  findUserByEmail(email) {
+    const normalized = normalizeEmail(email);
+    if (!normalized) return null;
+    if (this.users[normalized]) return this.users[normalized];
+    return Object.values(this.users).find((user) => normalizeEmail(user.email) === normalized) || null;
   }
 
   // Charger les utilisateurs depuis localStorage
@@ -45,15 +54,16 @@ class AuthService {
   async loginWithGoogle(credentialResponse) {
     try {
       const userInfo = handleGoogleSuccess(credentialResponse);
+      const email = normalizeEmail(userInfo.email);
 
       // Vérifier si l'utilisateur existe déjà
-      let user = this.users[userInfo.email];
+      let user = this.findUserByEmail(email);
 
       if (!user) {
         // Créer un nouvel utilisateur
         user = {
           id: userInfo.id,
-          email: userInfo.email,
+          email,
           full_name: userInfo.full_name,
           picture: userInfo.picture,
           auth_provider: 'google',
@@ -67,6 +77,10 @@ class AuthService {
       } else {
         // Mettre à jour la dernière connexion
         user.last_login = new Date().toISOString();
+        if (user.email !== email) {
+          user.email = email;
+          this.users[email] = user;
+        }
         this.saveUsers();
       }
 
@@ -84,13 +98,14 @@ class AuthService {
 
   // Inscription par email
   async registerWithEmail(email, password, userData = {}) {
-    if (this.users[email]) {
+    const normalizedEmail = normalizeEmail(email);
+    if (this.findUserByEmail(normalizedEmail)) {
       throw new Error('Un compte existe déjà avec cet email');
     }
 
     const user = {
       id: `email_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      email,
+      email: normalizedEmail,
       full_name: userData.full_name || email.split('@')[0],
       auth_provider: 'email',
       role: email === 'admin@opportunai.com' ? 'admin' : 'user',
@@ -114,7 +129,8 @@ class AuthService {
 
   // Connexion par email
   async loginWithEmail(email, password) {
-    const user = this.users[email];
+    const normalizedEmail = normalizeEmail(email);
+    const user = this.findUserByEmail(normalizedEmail);
 
     if (!user || user.auth_provider !== 'email') {
       throw new Error('Email ou mot de passe incorrect');
@@ -126,6 +142,10 @@ class AuthService {
     }
 
     user.last_login = new Date().toISOString();
+    if (user.email !== normalizedEmail) {
+      user.email = normalizedEmail;
+      this.users[normalizedEmail] = user;
+    }
     this.saveUsers();
 
     this.currentUser = user;
@@ -155,8 +175,9 @@ class AuthService {
 
   // Vérifier si l'utilisateur a un profil
   hasProfile(email) {
+    const normalizedEmail = normalizeEmail(email);
     const profiles = this.loadProfiles();
-    return !!profiles[email];
+    return !!profiles[normalizedEmail];
   }
 
   // Charger les profils
@@ -171,9 +192,11 @@ class AuthService {
 
   // Sauvegarder un profil
   saveProfile(email, profile) {
+    const normalizedEmail = normalizeEmail(email);
     const profiles = this.loadProfiles();
-    profiles[email] = {
+    profiles[normalizedEmail] = {
       ...profile,
+      email: normalizedEmail,
       updated_at: new Date().toISOString()
     };
     localStorage.setItem('opportunai_profiles', JSON.stringify(profiles));
@@ -181,8 +204,9 @@ class AuthService {
 
   // Obtenir le profil d'un utilisateur
   getProfile(email) {
+    const normalizedEmail = normalizeEmail(email);
     const profiles = this.loadProfiles();
-    return profiles[email] || null;
+    return profiles[normalizedEmail] || null;
   }
 
   // Obtenir tous les comptes utilisateurs enregistrés

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import mockClient from "@/api/mockClient";
 import { Button } from "@/components/ui/button";
 import { LogOut, Sun, Moon, Briefcase, Shield, Bell, Lock, Trash2, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -14,7 +13,7 @@ export default function Settings() {
   const [emailNotifs, setEmailNotifs] = useState(true);
   const [pushNotifs, setPushNotifs] = useState(true);
 
-  useEffect(() => { mockClient.auth.me().then(setUser).catch(() => setUser(null)); }, []);
+  useEffect(() => { base44.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const toggleTheme = () => {
     const next = !dark;
@@ -160,7 +159,7 @@ export default function Settings() {
 
       <Button
         variant="outline"
-        onClick={() => mockClient.auth.logout("/")}
+        onClick={() => base44.auth.logout("/")}
         className="rounded-xl w-full text-destructive hover:text-destructive border-destructive/20 hover:bg-destructive/5"
       >
         <LogOut className="w-4 h-4 mr-2" />

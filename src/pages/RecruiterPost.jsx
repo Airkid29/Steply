@@ -66,7 +66,7 @@ export default function RecruiterPost() {
     requirements: [], skills_needed: [], domains: [],
   });
 
-  useEffect(() => { mockClient.auth.me().then(setUser).catch(() => setUser(null)); }, []);
+  useEffect(() => { base44.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const set = (key, val) => setForm((p) => ({ ...p, [key]: val }));
 
@@ -120,7 +120,7 @@ export default function RecruiterPost() {
             <span className="text-muted-foreground text-sm ml-1">· For Recruiters</span>
           </div>
           {!user && (
-            <Button variant="outline" onClick={() => mockClient.auth.redirectToLogin()} className="rounded-full h-9 text-sm">
+            <Button variant="outline" onClick={() => base44.auth.redirectToLogin()} className="rounded-full h-9 text-sm">
               Sign in
             </Button>
           )}

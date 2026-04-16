@@ -51,7 +51,7 @@ export default function Profile() {
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
 
-  useEffect(() => { mockClient.auth.me().then(setUser).catch(() => setUser(null)); }, []);
+  useEffect(() => { base44.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const { data: profile, isLoading } = useQuery({
     queryKey: ["userProfile", user?.email],
@@ -89,7 +89,7 @@ export default function Profile() {
     const file = e.target.files?.[0];
     if (!file) return;
     setUploadingPhoto(true);
-    const res = await mockClient.integrations.Core.UploadFile({ file });
+    const res = await base44.integrations.Core.UploadFile({ file });
     updateField("avatar_url", res.file_url);
     setUploadingPhoto(false);
     toast({ title: "Photo uploaded", description: "Don't forget to save your profile." });
@@ -143,7 +143,7 @@ export default function Profile() {
   </table>
 </body>
 </html>`;
-    await mockClient.integrations.Core.SendEmail({
+    await base44.integrations.Core.SendEmail({
       to: user.email,
       subject: "✅ Your Steply alerts are now active",
       body: htmlBody,

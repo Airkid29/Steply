@@ -14,7 +14,7 @@ export default function ResumeAnalysis() {
   const [error, setError] = useState(null);
   const [dragging, setDragging] = useState(false);
 
-  useEffect(() => { mockClient.auth.me().then(setUser).catch(() => setUser(null)); }, []);
+  useEffect(() => { base44.auth.me().then(setUser).catch(() => setUser(null)); }, []);
 
   const { data: profile } = useQuery({
     queryKey: ["userProfile", user?.email],
@@ -45,12 +45,12 @@ export default function ResumeAnalysis() {
     if (!file) return;
     setUploading(true);
     setError(null);
-    const uploadRes = await mockClient.integrations.Core.UploadFile({ file });
+    const uploadRes = await base44.integrations.Core.UploadFile({ file });
     const fileUrl = uploadRes.file_url;
     setUploading(false);
     setAnalyzing(true);
 
-    const res = await mockClient.integrations.Core.InvokeLLM({
+    const res = await base44.integrations.Core.InvokeLLM({
       prompt: `You are an expert career advisor for students. Analyze this resume and provide detailed, actionable feedback.
 
 Student profile context:
