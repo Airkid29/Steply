@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { LogOut, Sun, Moon, Briefcase, Shield, Bell, Lock, Trash2, Mail } from "lucide-react";
+import { LogOut, Sun, Moon, Briefcase, Shield, Bell, Lock, Trash2, Mail, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getTheme, setTheme } from "@/lib/theme";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
 export default function Settings() {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [dark, setDark] = useState(() => getTheme() === "dark");
   const [emailNotifs, setEmailNotifs] = useState(true);
@@ -34,9 +36,15 @@ export default function Settings() {
 
   return (
     <div className="space-y-6 animate-fade-in pb-20 lg:pb-0">
-      <div>
-        <h1 className="text-2xl font-display font-bold">Settings</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">Manage your account preferences</p>
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
+          <ArrowLeft className="w-4 h-4" />
+          Back
+        </Button>
+        <div>
+          <h1 className="text-2xl font-display font-bold">Settings</h1>
+          <p className="text-sm text-muted-foreground mt-0.5">Manage your account preferences</p>
+        </div>
       </div>
 
       {/* Account */}

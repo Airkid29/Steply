@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Save, RefreshCw, X, Plus, User, Camera, Bell, Loader2 } from "lucide-react";
+import { Save, RefreshCw, X, Plus, User, Camera, Bell, Loader2, ArrowLeft } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { ALL_COUNTRIES } from "@/lib/countries";
 
@@ -44,6 +45,7 @@ function TagEditor({ tags, onChange, placeholder = "Add..." }) {
 }
 
 export default function Profile() {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const [user, setUser] = useState(null);
@@ -157,9 +159,15 @@ export default function Profile() {
   return (
     <div className="space-y-8 animate-fade-in pb-20 lg:pb-0">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-display font-bold">My Profile</h1>
-          <p className="text-sm text-muted-foreground mt-0.5">Complete your profile for better matches</p>
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </Button>
+          <div>
+            <h1 className="text-2xl font-display font-bold">My Profile</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">Complete your profile for better matches</p>
+          </div>
         </div>
         <Button onClick={() => saveMutation.mutate()} disabled={saveMutation.isPending} className="rounded-xl">
           {saveMutation.isPending ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}

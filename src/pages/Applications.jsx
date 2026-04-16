@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { FolderOpen } from "lucide-react";
+import { FolderOpen, ArrowLeft } from "lucide-react";
 import TypeBadge from "../components/shared/TypeBadge";
 import StatusBadge from "../components/shared/StatusBadge";
 import DeadlineBadge from "../components/shared/DeadlineBadge";
@@ -14,6 +15,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const statuses = ["all", "saved", "preparing", "applied", "archived"];
 
 export default function Applications() {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [user, setUser] = useState(null);
   const [statusFilter, setStatusFilter] = useState("all");
@@ -39,9 +41,15 @@ export default function Applications() {
   return (
     <div className="space-y-6 animate-fade-in pb-20 lg:pb-0">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-display font-bold">My Applications</h1>
-          <p className="text-sm text-muted-foreground mt-0.5">{applications.length} tracked opportunit{applications.length === 1 ? "y" : "ies"}</p>
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </Button>
+          <div>
+            <h1 className="text-2xl font-display font-bold">My Applications</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">{applications.length} tracked opportunit{applications.length === 1 ? "y" : "ies"}</p>
+          </div>
         </div>
       </div>
 
