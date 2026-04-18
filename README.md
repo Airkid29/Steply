@@ -1,6 +1,6 @@
 # Steply - AI-Powered Career Matching Platform
 
-##  Project Overview
+##  Project Overview 
 
 **Steply** is an innovative AI-driven career matching platform designed specifically for students and recent graduates. Our mission is to revolutionize the job search experience by using advanced AI algorithms to match candidates with opportunities that truly fit their skills, aspirations, and career goals.
 
@@ -241,7 +241,7 @@ Our proprietary matching engine considers:
 
 ##  License
 
-This project is developed for educational and demonstration purposes. All rights reserved.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ##  Developpers
 - **Henry-Joel Denkey**: Backend Developer
