@@ -200,7 +200,7 @@ Analyze the resume and return a structured report with:
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Resume Score</p>
               <p className="font-semibold text-foreground">{analysis.summary}</p>
               {analysis.profile_sync_tip && (
-                <p className="text-xs text-primary mt-1.5">✨ {analysis.profile_sync_tip}</p>
+                <p className="text-xs text-primary mt-1.5">+ {analysis.profile_sync_tip}</p>
               )}
             </div>
           </div>

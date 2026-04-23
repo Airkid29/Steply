@@ -19,7 +19,7 @@ class AuthService {
   // Load users from localStorage
   loadUsers() {
     try {
-      const users = localStorage.getItem('opportunai_users');
+      const users = localStorage.getItem('steply_users');
       return users ? JSON.parse(users) : {};
     } catch {
       return {};
@@ -28,13 +28,13 @@ class AuthService {
 
   // Save users
   saveUsers() {
-    localStorage.setItem('opportunai_users', JSON.stringify(this.users));
+    localStorage.setItem('steply_users', JSON.stringify(this.users));
   }
 
   // Load current user
   loadCurrentUser() {
     try {
-      const user = localStorage.getItem('opportunai_current_user');
+      const user = localStorage.getItem('steply_current_user');
       return user ? JSON.parse(user) : null;
     } catch {
       return null;
@@ -44,9 +44,9 @@ class AuthService {
   // Save current user
   saveCurrentUser() {
     if (this.currentUser) {
-      localStorage.setItem('opportunai_current_user', JSON.stringify(this.currentUser));
+      localStorage.setItem('steply_current_user', JSON.stringify(this.currentUser));
     } else {
-      localStorage.removeItem('opportunai_current_user');
+      localStorage.removeItem('steply_current_user');
     }
   }
 
@@ -67,7 +67,7 @@ class AuthService {
           full_name: userInfo.full_name,
           picture: userInfo.picture,
           auth_provider: 'google',
-          role: userInfo.email === 'admin@opportunai.com' ? 'admin' : 'user',
+          role: userInfo.email === 'admin@steply.com' ? 'admin' : 'user',
           created_at: new Date().toISOString(),
           last_login: new Date().toISOString(),
           is_active: true
@@ -108,7 +108,7 @@ class AuthService {
       email: normalizedEmail,
       full_name: userData.full_name || email.split('@')[0],
       auth_provider: 'email',
-      role: email === 'admin@opportunai.com' ? 'admin' : 'user',
+      role: email === 'admin@steply.com' ? 'admin' : 'user',
       created_at: new Date().toISOString(),
       last_login: new Date().toISOString(),
       is_active: true,
@@ -183,7 +183,7 @@ class AuthService {
   // Load profiles
   loadProfiles() {
     try {
-      const profiles = localStorage.getItem('opportunai_profiles');
+      const profiles = localStorage.getItem('steply_profiles');
       return profiles ? JSON.parse(profiles) : {};
     } catch {
       return {};
@@ -199,7 +199,7 @@ class AuthService {
       email: normalizedEmail,
       updated_at: new Date().toISOString()
     };
-    localStorage.setItem('opportunai_profiles', JSON.stringify(profiles));
+    localStorage.setItem('steply_profiles', JSON.stringify(profiles));
   }
 
   // Get a user's profile
@@ -217,7 +217,7 @@ class AuthService {
   // Simple password hash (use a real hash in production)
   async hashPassword(password) {
     // Simulation de hash - en production, utiliser une vraie fonction de hash
-    return btoa(password + 'salt_opportunai');
+    return btoa(password + 'salt_steply');
   }
 
   // Verify password

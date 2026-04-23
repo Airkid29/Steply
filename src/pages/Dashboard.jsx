@@ -119,7 +119,7 @@ export default function Dashboard() {
           Back
         </Button>
         <h1 className="text-2xl font-display font-bold text-foreground">
-          Hey {firstName} 👋
+          Hey {firstName}
         </h1>
         <p className="text-sm text-muted-foreground mt-0.5">Here are your top matches today</p>
       </div>

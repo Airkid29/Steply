@@ -112,13 +112,13 @@ export default function Profile() {
         <!-- Header -->
         <tr><td style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);padding:32px 40px;text-align:center;">
           <div style="display:inline-flex;align-items:center;gap:10px;">
-            <div style="width:36px;height:36px;background:rgba(255,255,255,0.2);border-radius:10px;display:inline-block;line-height:36px;text-align:center;font-size:18px;">✨</div>
+            <div style="width:36px;height:36px;background:rgba(255,255,255,0.2);border-radius:10px;display:inline-block;line-height:36px;text-align:center;font-size:18px;">S</div>
             <span style="color:#ffffff;font-size:22px;font-weight:700;letter-spacing:-0.5px;">Steply</span>
           </div>
         </td></tr>
         <!-- Body -->
         <tr><td style="padding:40px;">
-          <h1 style="margin:0 0 8px;font-size:24px;font-weight:700;color:#111827;">Alerts activated! 🎉</h1>
+          <h1 style="margin:0 0 8px;font-size:24px;font-weight:700;color:#111827;">Alerts activated</h1>
           <p style="margin:0 0 24px;color:#6b7280;font-size:15px;">Hi ${name},</p>
           <p style="margin:0 0 24px;color:#374151;font-size:15px;line-height:1.7;">
             Your email alerts on <strong style="color:#4f46e5;">Steply</strong> are now active. You'll receive personalized notifications whenever new opportunities matching your profile in <strong>${field}</strong> become available.
@@ -147,7 +147,7 @@ export default function Profile() {
 </html>`;
     await base44.integrations.Core.SendEmail({
       to: user.email,
-      subject: "✅ Your Steply alerts are now active",
+      subject: "Your Steply alerts are now active",
       body: htmlBody,
     });
     setSendingEmail(false);

@@ -202,7 +202,7 @@ Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a rea
             )}
             {matchData.risk && (
               <p className="text-xs text-amber-600 mt-2 flex items-center gap-1.5">
-                ⚠️ {matchData.risk}
+                {matchData.risk}
               </p>
             )}
           </div>
@@ -252,9 +252,8 @@ Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a rea
             Interview Prep
           </Link>
         </Button>
-        <Button
-          variant="outline"
-          className="rounded-xl"
+        <Button variant="outline"
+          className="rounded-xl">
           onClick={() => {
             const url = window.location.href;
             if (navigator.share) {
@@ -264,9 +263,10 @@ Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a rea
               toast({ title: "Link copied!", description: "Share this opportunity with your friends." });
             }
           }}
-        >
+        
           <Share2 className="w-4 h-4 mr-2" />
               Share
+        </Button>
       </div>
 
       {/* AI Action Plan */}
@@ -302,7 +302,7 @@ Write 3-4 paragraphs. Be authentic, enthusiastic, and specific. Sound like a rea
               ))}
             </ol>
             {actionPlan.priority_tip && (
-              <p className="text-xs text-primary bg-primary/5 rounded-lg p-3">💡 {actionPlan.priority_tip}</p>
+              <p className="text-xs text-primary bg-primary/5 rounded-lg p-3">{actionPlan.priority_tip}</p>
             )}
           </div>
         )}
