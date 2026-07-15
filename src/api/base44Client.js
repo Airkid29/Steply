@@ -470,7 +470,7 @@ const DEFAULT_OPPORTUNITIES = [
   },
 ];
 
-const APPLICATION_STORAGE_KEY = 'opportunai_applications';
+const APPLICATION_STORAGE_KEY = 'steply_applications';
 
 const loadApplications = () => {
   try {

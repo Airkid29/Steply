@@ -204,7 +204,7 @@ export default function RecruiterPost() {
                   <Select value={form.country} onValueChange={(v) => set("country", v)}>
                     <SelectTrigger className="h-10 rounded-lg"><SelectValue placeholder="Select country" /></SelectTrigger>
                     <SelectContent className="max-h-60">
-                      <SelectItem value="Remote / Global">🌍 Remote / Global</SelectItem>
+                      <SelectItem value="Remote / Global">Remote / Global</SelectItem>
                       {ALL_COUNTRIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
                     </SelectContent>
                   </Select>

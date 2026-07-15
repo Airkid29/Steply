@@ -6,7 +6,7 @@ import { authService } from '@/lib/authService';
 const mockUsers = {
   'google:1234567890': {
     id: 'mock-user-google-1',
-    email: 'demo@opportunai.com',
+    email: 'demo@steply.com',
     full_name: 'Demo User',
     auth_provider: 'google',
   },
@@ -31,10 +31,10 @@ const mockDatabase = {
   UserProfile: [
     {
       id: 'profile-demo-1',
-      created_by: 'demo@opportunai.com',
+      created_by: 'demo@steply.com',
       created_date: new Date().toISOString(),
       name: 'Demo User',
-      email: 'demo@opportunai.com',
+      email: 'demo@steply.com',
       country: 'France',
       field_of_study: 'Computer Science',
       academic_level: 'bachelor_2',
@@ -255,7 +255,7 @@ export const mockClient = {
       
       // Show email input dialog
       setTimeout(() => {
-        const email = prompt('Demo Login\n\nTry: demo@opportunai.com or test@gmail.com\n\nEnter your email:');
+        const email = prompt('Demo Login\n\nTry: demo@steply.com or test@steply.com\n\nEnter your email:');
         if (email) {
           // Create or get user
           let user = mockGoogleUsers[email] || {
@@ -289,7 +289,7 @@ export const mockClient = {
     googleSignIn: async () => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          const email = prompt('Sign in with Google\n\nTry: demo@opportunai.com or test@gmail.com\n\nEnter your email:');
+          const email = prompt('Sign in with Google\n\nTry: demo@steply.com or test@steply.com\n\nEnter your email:');
           if (email) {
             let user = mockGoogleUsers[email] || {
               id: `google-user-${Date.now()}`,
