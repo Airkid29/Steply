@@ -3,6 +3,7 @@
 ##  Project Overview 
 
 **Steply** is an innovative AI-driven career matching platform designed specifically for students and recent graduates. Our mission is to revolutionize the job search experience by using advanced AI algorithms to match candidates with opportunities that truly fit their skills, aspirations, and career goals.
+Co-authored-by: TechDisciple13,  denkeyhenrijoel1@gmail.com
 
 ### Hackathon Context
 This project was developed during Tech Builders Program on Devpost as a solution to the challenge of inefficient career matching in the education-to-employment transition. We identified that traditional job boards overwhelm students with irrelevant listings, while recruiters struggle to find qualified candidates.
@@ -253,10 +254,3 @@ For questions about this project or technical implementation details, please ref
 
 ---
 
-**Built with ❤️ for students and recent graduates worldwide**
-
-**Docs & Support**
-
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
